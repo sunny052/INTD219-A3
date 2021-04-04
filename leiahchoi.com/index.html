@@ -42,7 +42,8 @@
           
 
     <div class = "background">   
-        <!-- <img class="background" src="file:///Users/sunhochoi/Desktop/INTD219/assignment%203/water%20background.png" alt="image"> -->    
+        <!-- <img class="background" src="file:///Users/sunhochoi/Desktop/
+            INTD219/assignment%203/water%20background.png" alt="image"> -->    
         <div class = title > How <br> to <br> Wash <br> Hands.</div>
     </div>
     
@@ -240,24 +241,33 @@
         
 
         <div id="code" class="coding">
-            <div class="timer1">Proper time for hand washing is 30seconds!</div>
-            <div id="timerID" class="timer"></div>
-            <div class="timer2"> 
-                var timeLeft = 30;<br>
-                var elem = document.getElementById('timerID');<br><br>
+            <div class="codeTitle">Lets set a timer for 30secs!</div>
+            
+            <div id="timerID" class="timerText"></div>
+            <button class="btn-start"> START! </button>
+            
+            <pre class="code-block prettyprint lang-html">
+                <code>
+                var timeLeft = 30;
+                var elem = document.getElementById('timerID');
+                var timerId;
                 
-                var timerId = setInterval(countdown, 1000);<br><br>
+                document.querySelector('.btn-start').addEventListner("click", function(event){
+                    console.log("Start");
+                    timerId = setInterval(countdown, 1000);
+                })
                 
-                function countdown() {<br>
-                  if (timeLeft == -1) {<br>
-                    clearTimeout(timerId);<br>
-                    console.log("done!");<br>
-                  } else {<br>
-                    elem.innerHTML = timeLeft + ' seconds remaining';<br>
-                    timeLeft--;<br>
-                  }<br>
-                }
-            </div>
+                function countdown() {
+                     if(timeLeft == -1) { 
+                         clearTimeout(timerId); 
+                         elem.innerHTML = 'Done!'; 
+                         } else { 
+                             elem.innerHTML = timeLeft + ' seconds remaining'; 
+                             timeLeft--; 
+                         } 
+                     } 
+                    
+              </code></pre>
             
         </div>
 
@@ -291,19 +301,10 @@
         overflow-x: hidden;
     }
 
-    @font-face {
-        font-family: 'Prompt';
-        src: url("https://fonts.google.com/specimen/Prompt?preview.text_type=custom#standard-styles");
-    }
-    @font-face{
-        font-family: 'Kanit';
-        src: url("https://fonts.google.com/specimen/Kanit?preview.text_type=custom#standard-styles")
-    }
-
-    @font-face {
-        font-family: 'Roboto' ;
-        src: url("https://fonts.google.com/specimen/Roboto?preview.text_type=custom");
-    }
+   
+    /*Roboto*/
+    @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+    
 
     a.nav-link{
         position:relative;
@@ -774,24 +775,28 @@
   
    }
 
+
+
    .coding{
-       top: 50vmax;
+       top: 40vmax;
        height: 10vmin;     
        position: relative;
        align-items: center;
        margin-bottom: 20%;
    }
-   .timer{
-       text-align: center;
-       position: relative;
-       font-size: 3vmax;
-       font-weight: 400;
-       color: rgb(236, 87, 0);
-       border: grey 5px;
 
+ .btn-start, .timerText{
+       position: relative;
+       top: 27vmax;
+       align-items: center;
+       margin-left: 45%;
+       margin-right: 50%;
+       font-weight: 600;
+       font-family: 'Roboto';
+       font-size: 2vmin;
    }
 
-   .timer1{
+   .codeTitle{
        top: 20vmax;
        font-family: 'Roboto';
        font-size: 2.5vmax;
@@ -801,37 +806,45 @@
        
    }
 
-   .timer2{
-       margin-top: 3vmax;
-       position: relative;
-       
-       font-family: 'Roboto';
-       font-size: 1.5vmax;
-       color: rgb(122, 123, 133);
-       top: 30vmax;
-       margin-left: 30%;
-       margin-bottom: 20vmax;
-   }
-   
+   .code-block{
+	padding: 3vmin;
+	border-radius: 2vmin;
+	margin: 10vmin;
+    top: 30vmax;
+    position: relative;
+    color: rgb(94, 101, 206);
+    background-color: white;
+    }
+    
 
 </style>
 
+
+
+
+
+
+
 <script>
     
-    var timeLeft = 30;
-    var elem = document.getElementById('#timerID');
-    
-    var timerId = setInterval(countdown, 1000);
-    
-    function countdown() {
-      if (timeLeft == -1) {
-        clearTimeout(timerId);
-        console.log("Done!");
-      } else {
-        elem.innerHTML = console.log(timeLeft + ' seconds remaining');
-        timeLeft--;
-      }
-    }
+var timeLeft = 30;
+var elem = document.getElementById('timerID');
+var timerId;
+
+document.querySelector('.btn-start').addEventListener("click", function(event){
+	console.log("START");
+	timerId = setInterval(countdown, 1000);
+})
+
+function countdown() {
+	if (timeLeft == -1) {
+	  clearTimeout(timerId);
+	  elem.innerHTML = 'DONE!';
+	} else {
+	  elem.innerHTML = timeLeft + ' seconds remaining';
+	  timeLeft--;
+	}
+}
 
 </script>
 
